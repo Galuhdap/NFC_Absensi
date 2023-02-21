@@ -16,7 +16,7 @@ class UserController extends Controller
                 'name' => ['required', 'string', 'max:100'],
                 'nbi' => ['required', 'string', 'max:100'],
                 'role_id' => ['required', 'integer'],
-                'remember_token' => ['required', 'string', 'max:200'],
+
 
             ]);
 
@@ -24,15 +24,13 @@ class UserController extends Controller
                 'name' => $request->name,
                 'nbi' => $request->nbi,
                 'role_id' => $request->role_id,
-                'remember_token' => $request->remember_token,
             ]);
 
             $user = User::where('nbi', $request->nbi)->first();
             $tokenResult = $user->createToken('authToken')->plainTextToken;
 
-            // User::updated([
-            //     'remember_token' => $tokenResult,
-            // ]);
+            $user->remember_token = $tokenResult;
+            $user->save();
 
             $data = [
                 'access_token' => $tokenResult,
