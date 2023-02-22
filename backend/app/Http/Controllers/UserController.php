@@ -58,8 +58,6 @@ class UserController extends Controller
                 'role_id' => ['required', 'integer']
             ]);
 
-            // dd($request);
-
             User::create([
                 'name' => $request->name,
                 'nbi' => $request->nbi,
