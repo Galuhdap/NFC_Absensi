@@ -17,15 +17,11 @@ class UserController extends Controller
                 'nbi' => 'required',
                 'password' => 'required',
             ]);
-            // dd($request);
-
             $credentials = request(['nbi', 'password']);
 
             if (!Auth::attempt($credentials)) {
                 return $this->sendError('Unauthorized', 'Authentication Failed', 500);
             }
-            // dd(Auth::attempt($credentials));
-
             $user = User::where('nbi', $request->nbi)->first();
 
             if (!Hash::check($request->password, $user->password, [])) {
