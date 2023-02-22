@@ -17,9 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::group(['middleware' => 'App\Http\Middleware\Auth'], function () {
-//     Route::apiResource('role', RoleController::class);
-// });
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::group(['middleware' => 'App\Http\Middleware\Auths'], function () {
@@ -30,7 +27,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
-Route::get('admin', [UserController::class, 'onlyAdmin']);
 
 
 // Route::get('/role', [RoleController::class, 'index']);
