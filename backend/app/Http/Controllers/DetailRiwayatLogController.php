@@ -14,7 +14,7 @@ class DetailRiwayatLogController extends Controller
      */
     public function index()
     {
-        //
+        $data = Detail_riwayat_log::all();
     }
 
     /**
