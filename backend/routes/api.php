@@ -30,4 +30,3 @@ Route::post('login', [UserController::class, 'login']);
 
 
 // Route::get('/role', [RoleController::class, 'index']);
-// Route::post('/role', [RoleController::class, 'store']);
