@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // Rendi push
+    // Rendi push hehe anj
     public function login(Request $request)
     {
         try {
