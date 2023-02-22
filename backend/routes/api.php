@@ -4,6 +4,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Middleware\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::group(['middleware' => 'App\Http\Middleware\Auth'], function () {
+//     Route::apiResource('role', RoleController::class);
+// });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::group(['middleware' => 'App\Http\Middleware\Auths'], function () {
+        Route::apiResource('role', RoleController::class);
+    });
+    Route::post('logout', [UserController::class, 'logout']);
 });
+
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
+Route::get('admin', [UserController::class, 'onlyAdmin']);
+
 
 // Route::get('/role', [RoleController::class, 'index']);
 // Route::post('/role', [RoleController::class, 'store']);
-Route::apiResource('/role', RoleController::class);
-
-Route::post('users', [UserController::class, 'store']);

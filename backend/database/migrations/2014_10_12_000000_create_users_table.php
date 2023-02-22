@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nbi')->unique();
+            $table->string('password');
             $table->unsignedBigInteger('role_id')->unsigned();
             // $table->foreignId('role_id')->constrained('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->rememberToken();
